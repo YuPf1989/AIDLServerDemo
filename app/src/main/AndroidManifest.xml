@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.rain.aidlserverdemo">
+
+    <!--https://blog.csdn.net/ithouse/article/details/75660130-->
+    <!-- 声明权限，一般来说，要声明权限的级别，否则在aidl调用时会出现一个bug：先安装client端，后安装service端会导致client端无法打开 -->
+    <permission
+        android:name="com.rain"
+        android:protectionLevel="signature" />
+
+    <!-- 声明使用指定的权限 -->
+    <uses-permission android:name="com.rain" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service android:name=".MusicPlayerService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="com.rain"
+            >
+            <intent-filter>
+                <action android:name="com.rain.aidlserverdemo.action" />
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>
